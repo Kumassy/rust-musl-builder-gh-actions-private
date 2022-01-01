@@ -8,9 +8,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.DEPLOY_KEY_SECRET }}
 
     - name: Build binary
-      run: docker run --rm -u root -v `pwd`:/home/rust/src ekidd/rust-musl-builder cargo build --release
+      run: docker run --rm -u root -v ${HOME}/.ssh:/root/.ssh -v $SSH_AUTH_SOCK:/ssh-agent -e SSH_AUTH_SOCK=/ssh-agent -v `pwd`:/home/rust/src ekidd/rust-musl-builder cargo build --release
 
     - name: save artifacts
       uses: actions/upload-artifact@v2
