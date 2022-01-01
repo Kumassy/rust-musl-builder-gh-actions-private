@@ -1,0 +1,9 @@
+[package]
+name = "rust-musl-builder-gh-actions-private"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rust-musl-builder-gh-actions-private-lib = { git = "ssh://git@github.com/Kumassy/rust-musl-builder-gh-actions-private-lib", branch = "main" }
